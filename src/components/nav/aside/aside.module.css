@@ -1,0 +1,158 @@
+.sidebar {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    bottom: 0;
+    width: 300px;
+    z-index: 996;
+    transition: all 0.3s;
+    padding: 20px;
+    overflow: auto; /* Update this line */
+    scrollbar-width: thin;
+    scrollbar-color: #aab7cf #fff;
+    box-shadow: 0px 0px 20px rgba(1, 41, 112, 0.1);
+    background-color: #fff;
+}
+
+.sidebar::-webkit-scrollbar {
+    width: 5px;
+    height: 8px;
+    background-color: #fff;
+}
+
+
+
+.sidebar::-webkit-scrollbar-thumb {
+    background-color: #aab7cf;
+}
+
+
+@media (min-width: 1200px) {
+    .close {
+        left: -300px;
+    }
+}
+
+@media (max-width: 1199px) {
+    .closeMobile {
+        left: -300px;
+    }
+}
+
+@media (max-width: 1199px) {
+    .openMobile {
+        left: 0;
+    }
+}
+
+.sidebarNav {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.navItem {
+    margin-bottom: 5px;
+}
+
+.navHeading {
+    font-size: 11px;
+    text-transform: uppercase;
+    color: #899bbd;
+    font-weight: 600;
+    margin: 10px 0 5px 15px;
+}
+
+.navLink {
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 600;
+    color: #012970;
+    transition: 0.3s;
+    padding: 10px 15px;
+    border-radius: 4px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.icon {
+    font-size: 16px;
+    margin-right: 10px;
+    color: #4154f1;
+}
+
+.collapsed {
+    color: #012970;
+    background: #fff;
+}
+
+.collapsedIcon {
+    font-size: 16px;
+    margin-right: 10px;
+    color: #899bbd;
+    transition: transform 0.5s ease-in-out;
+}
+
+.navLink,
+.navLink:hover {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.navLink:hover,
+.active,
+.navLink.collapsed:hover {
+    color: #4154f1;
+    background: #f6f9ff;
+}
+
+.navLink:hover .icon,
+.navLink.collapsed:hover .icon {
+    color: #4154f1;
+}
+
+.biChevronUp {
+    transform: rotate(180deg);
+}
+
+.navContent {
+    padding: 5px 0 0 0;
+    margin: 0;
+    list-style: none;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out, opacity 0.2s ease-in-out;
+    opacity: 0;
+}
+
+.navContent.show {
+    max-height: 200px;
+    opacity: 1;
+}
+
+.navContent a {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 600;
+    color: #012970;
+    padding: 10px 0 10px 40px;
+    transition: 0.3s;
+}
+
+.navContentIcon {
+    font-size: 6px;
+    margin-right: 8px;
+    line-height: 0;
+    border-radius: 50%;
+}
+
+.navContent a:hover,
+.navContent a.active {
+    color: #4154f1;
+}
+
+.navContent a.active .navContentIcon {
+    background-color: #4154f1;
+}

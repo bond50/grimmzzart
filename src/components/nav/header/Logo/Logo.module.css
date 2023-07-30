@@ -1,0 +1,42 @@
+.Logo {
+    line-height: 1;
+}
+
+@media (min-width: 1200px) {
+    .Logo {
+        width: 280px;
+    }
+}
+
+.Logo img {
+    max-height: 26px;
+    margin-right: 6px;
+}
+
+.Span {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--color-white);
+}
+
+@media (max-width: 768px) {
+    .Span {
+        font-size: 26px;
+        font-weight: 700;
+        color: var(--color-white);
+        font-family: "Nunito", sans-serif;
+    }
+
+}
+
+@media (min-width: 768px) {
+    .HideOnLarge {
+        display: none;
+    }
+
+}
+
+
+
+
+

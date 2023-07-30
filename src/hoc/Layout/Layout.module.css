@@ -1,0 +1,32 @@
+.Main {
+    margin-top: 60px;
+  padding: 20px 30px;
+  transition: all 0.3s;
+
+}
+
+
+
+
+
+
+
+@media (min-width: 1200px) {
+    .Main {
+        margin-left: 300px;
+        transition: all 0.3s
+    }
+}
+
+
+@media (max-width: 1199px) {
+    .Main {
+        padding: 20px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .Close {
+        margin-left: 0;
+    }
+}

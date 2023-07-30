@@ -1,0 +1,30 @@
+.SidebarListItem {
+    border: none !important;
+    padding: 0;
+    list-style: none;
+    margin-bottom: 5px;
+}
+
+
+.Icon {
+    font-size: 16px;
+    margin-right: 10px;
+    color: var(--color-slate-blue);
+}
+
+.NavLink {
+    display: flex ;
+    align-items: center ;
+    font-size: 13px ;
+    font-weight: 500 ;
+    color: var(--color-blue) ;
+    background: #ffffff ;
+    padding: 10px 15px ;
+    border-radius: 4px ;
+}
+
+
+.NavLink:hover, .NavLink.active {
+    color: #4154f1;
+    background: #ededf1;
+}

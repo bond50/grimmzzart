@@ -1,0 +1,37 @@
+:root {
+  --breadcrumb-font: "Nunito", sans-serif;
+  --breadcrumb-font-size: 14px;
+  --breadcrumb-font-weight: 600;
+  --breadcrumb-color: #899bbd;
+  --breadcrumb-hover-color: #51678f;
+}
+
+.breadcrumb {
+  font-size: var(--breadcrumb-font-size);
+  font-family: var(--breadcrumb-font);
+  color: var(--breadcrumb-color);
+  font-weight: var(--breadcrumb-font-weight);
+}
+
+.breadcrumb a {
+  color: inherit; /* inherit color from .breadcrumb class */
+  transition: 0.3s;
+}
+
+.breadcrumb a:hover {
+  color: var(--breadcrumb-hover-color);
+}
+
+.breadcrumbItem::before {
+
+  color: inherit; /* inherit color from .breadcrumb class */
+}
+
+.breadcrumbItem::first-letter {
+    text-transform: capitalize;
+}
+
+.breadcrumb .active {
+  color: var(--breadcrumb-hover-color);
+  font-weight: var(--breadcrumb-font-weight);
+}

@@ -1,0 +1,95 @@
+.Wrapper{
+    height: 100%;
+
+}
+
+.Section {
+    background: #f1f6fd;
+    min-height: 10vh;
+
+}
+
+.Logo {
+    line-height: 1;
+}
+
+@media (min-width: 1200px) {
+    .Logo {
+        width: 280px;
+    }
+}
+
+.Logo img {
+    max-height: 26px;
+    margin-right: 6px;
+}
+
+.Logo span {
+    font-size: 26px;
+    font-weight: 700;
+    color: #012970;
+    font-family: "Nunito", sans-serif;
+}
+
+.Card {
+
+    margin-bottom: 30px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
+}
+
+.Card i {
+    color: #012970;
+}
+
+.Icon {
+    font-size: 12px !important;
+}
+
+.CardTitle {
+    padding: 20px 0 15px 0;
+    font-size: 18px;
+    font-weight: 500;
+    color: #012970;
+    font-family: "Poppins", sans-serif;
+}
+
+
+.CardTitle span {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.white {
+    background-color: #1bbd36;
+    color: #fff !important;
+
+    border-radius: 5px;
+    padding: 3px;
+}
+
+.CardBody {
+    padding: 0 20px 20px 20px;
+}
+
+.Btn {
+    background-color: #1bbd36;
+    border-color: #1bbd36;
+}
+
+.sBtn a {
+    color: #106eea;
+}
+
+.Card input, .Card .select {
+    border-radius: 2px;
+
+}
+
+.Card input:focus, .Card .select:focus {
+    box-shadow: none !important;
+    border: 2px solid #106eea;
+
+}

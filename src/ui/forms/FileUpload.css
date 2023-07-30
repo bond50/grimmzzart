@@ -1,0 +1,41 @@
+
+.myImage {
+    height: 150px;
+    overflow: hidden;
+}
+
+.myImage img {
+    width: 100%;
+    height: 110px;
+    max-height: 100%;
+    object-fit: cover;
+}
+
+.myBadge {
+    position: absolute;
+    right: -10px;
+    cursor: pointer;
+    top: -50px;
+    /*z-index: 10;*/
+    background: red;
+    text-align: center;
+    border-radius: 30px 30px 30px 30px;
+    color: white;
+    font-size: 20px;
+}
+
+
+@media screen and (max-width: 576px) and (max-width: 768px) {
+    .myImage img {
+        height: 70px;
+
+    }
+
+    .myBadge {
+        top: -35px;
+
+    }
+
+
+}
+

@@ -1,0 +1,49 @@
+.permissions-card {
+    background-color: #f5f7f9;
+    border-radius: 8px;
+}
+
+.permissions-header {
+    padding: 16px 0;
+}
+
+.subject-title {
+    font-weight: 500;
+    color: #5a5a5a;
+    margin-bottom: 0;
+}
+
+.permissions-category {
+    border-radius: 8px;
+    background-color: #ffffff;
+    padding: 24px;
+}
+
+.permissions-item {
+    padding: 8px;
+    background-color: #f5f7f9;
+    border-radius: 8px;
+    margin-bottom: 16px;
+}
+
+.permissions-description {
+    font-size: 16px;
+}
+
+.permissions-footer {
+    padding: 16px 0;
+}
+
+.toggle-all-checkbox {
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.subject-section {
+    margin-bottom: 24px;
+}
+
+.subject-section hr {
+    border-top: 1px solid #d9d9d9;
+    margin-bottom: 24px;
+}
