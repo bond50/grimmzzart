@@ -33,6 +33,7 @@
   "scripts": {
     "start": "cross-env PORT=1845 react-scripts start",
     "build": "react-scripts build",
+    "server": "node server.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
