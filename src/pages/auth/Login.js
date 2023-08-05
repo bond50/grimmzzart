@@ -96,8 +96,6 @@ const Login = () => {
                         </> : 'Login'}
                     </MDBBtn>
                 </div>
-                <InfoLink link="/auth/register" text="Don't have account? Create an account"/>
-                <InfoLink link="/auth/password/forgot" text="Forgot password? Reset it here"/>
             </Form>
         </form>
     );
