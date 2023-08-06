@@ -33,22 +33,7 @@ export const loginFormInitialValues = {
             validationMessage: [],
             valid: false,
             touched: false
-        },
-        remember: {
-            elementType: 'checkbox',
-            elementConfig: {
-                type: 'checkbox',
-                name: 'remember',
-                label: 'Remember me'
-            },
-            value: false,
-            validation: {
-                required: false
-            },
-            validationMessage: [],
-            valid: true,
-            touched: true
-        },
+        }
     },
     formIsValid: false
 }
