@@ -14,10 +14,9 @@ const handleError = (error, thunkAPI) => {
             error.response.data.message) ||
         error.message ||
         "Something went wrong. Please try again later.";
-
     thunkAPI.dispatch(setMessage(message));
     showToast(message, "error", 4000, "350px");
-    return thunkAPI.rejectWithValue();
+    return message;
 };
 
 
@@ -27,7 +26,8 @@ export const resetPassword = createAsyncThunk("auth/resetPassword", async (data,
         thunkAPI.dispatch(setMessage(response.data.message));
         return response.data;
     } catch (error) {
-        return handleError(error, thunkAPI);
+        handleError(error, thunkAPI);
+        throw error;
     }
 });
 
@@ -37,7 +37,8 @@ export const forgotPassword = createAsyncThunk("auth/forgotPassword", async (ema
         thunkAPI.dispatch(setMessage(response.data.message));
         return response.data;
     } catch (error) {
-        return handleError(error, thunkAPI);
+       handleError(error, thunkAPI);
+       throw error;
     }
 });
 
@@ -45,22 +46,31 @@ export const forgotPassword = createAsyncThunk("auth/forgotPassword", async (ema
 export const logout = createAsyncThunk("auth/logout", async () => {
     await AuthService.logout();
 });
-
 export const login = createAsyncThunk("auth/login", async (userInfo, thunkAPI) => {
     try {
-        const data = await AuthService.login(userInfo);
-        const {user} = data;
+        return await AuthService.login(userInfo);
+
+    } catch (error) {
+        console.log('ERRRRRRR', error)
+       handleError(error, thunkAPI);
+        throw error;
+    }
+});
+export const verify2FA = createAsyncThunk("auth/verify2FA", async (data, thunkAPI) => {
+    try {
+        const response = await AuthService.verify2FA(data);
+
+        const {user} = response;
         if (user.role && user.role.permissions) {
             user.permissions = user.role.permissions;
             delete user.role.permissions;
         }
-
         return {user};
     } catch (error) {
-        return handleError(error, thunkAPI);
+       handleError(error, thunkAPI);
+       throw error;
     }
 });
-
 
 const initialState = user
     ? {
@@ -69,7 +79,6 @@ const initialState = user
     }
     : {
         isLoggedIn: false,
-        addressSaved: false,
         user: null,
     };
 
@@ -82,19 +91,24 @@ const authSlice = createSlice({
         builder
             .addCase(logout.fulfilled, (state, action) => {
                 state.isLoggedIn = false;
-                state.addressSaved = false;
                 state.user = null;
             })
             .addCase(login.fulfilled, (state, action) => {
-                state.isLoggedIn = true;
-                state.addressSaved = action.payload.user.address && action.payload.user.address.length > 0;
-                state.user = action.payload.user;
+                state.isLoggedIn = false;
+                state.user = null;
             })
             .addCase(login.rejected, (state, action) => {
                 state.isLoggedIn = false;
-                state.addressSaved = false;
                 state.user = null;
             })
+            .addCase(verify2FA.fulfilled, (state, action) => {
+                state.isLoggedIn = true;
+                state.user = action.payload.user;
+            })
+            .addCase(verify2FA.rejected, (state, action) => {
+                state.isLoggedIn = false;
+                state.user = null;
+            });
 
     },
 });

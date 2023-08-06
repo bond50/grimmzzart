@@ -15,24 +15,28 @@ const resetPassword = (resetInfo) => {
     return axios.put(API_URL + '/reset-password', resetInfo);
 };
 
-const logout = () => {
-    localStorage.removeItem('user');
-};
-
-const login = (data) => {
-    return axios.post(API_URL + '/signin', data).then((response) => {
-        if (response.data.user.token) {
-            console.log('USER', response.data);
+const verify2FA = (data) => {
+    return axios.post(API_URL + '/verify2FA', data).then((response) => {
+        if (response.data.token) {
             localStorage.setItem('user', JSON.stringify(response.data.user));
         }
         return response.data;
     });
 };
+const logout = () => {
+    localStorage.removeItem('user');
+};
 
+const login = (data) => {
+    return axios.post(API_URL + '/signin-mfa', data).then((response) => {
+        return response.data;
+    });
+};
 
 const authService = {
     currentAdmin,
     logout,
+    verify2FA,
     forgotPassword,
     resetPassword,
     login
