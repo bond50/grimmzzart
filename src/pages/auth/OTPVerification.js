@@ -58,9 +58,7 @@ const OTPPage = () => {
         setLoading(false);
     };
 
-    console.log(userInfo)
-    console.log(hasLoggedInBefore)
-    console.log(is2FAEnabled)
+
 
     if (hasLoggedInBefore && is2FAEnabled) {
         return <div className="pt-4 pb-2">
