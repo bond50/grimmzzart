@@ -54,6 +54,7 @@ const Login = () => {
         try {
             const res = await dispatch(login(formData));
             const result = unwrapResult(res);
+
             if (result.forcePasswordChange) {
                 fireAlert(`${result.message}`, 'info', () => navigate('/change-password', {state: {userId: result.userId}}));
             }
