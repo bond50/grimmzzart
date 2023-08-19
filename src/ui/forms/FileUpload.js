@@ -4,8 +4,9 @@ import {useSelector} from "react-redux";
 import axios from "axios";
 import {Icon} from '@iconify/react';
 import './FileUpload.css'
+import {API_URL} from "../../common/config/config";
 
-const API_URL = process.env.REACT_APP_API_DEVELOPMENT;
+
 
 const FileUpload = ({
                         values,
