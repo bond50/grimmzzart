@@ -69,6 +69,7 @@ const Aside = ({open}) => {
             icon: 'fluent-mdl2:account-management',
             title: 'User Management',
             subItems: [
+                {title: 'User Create', href: '/user-management/create-user'},
                 {title: 'Manage users', href: '/user-management'},
             ],
         },

@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import {clearMessage} from "../../redux/slices/message";
 import {useDispatch, useSelector} from "react-redux";
 import {Link, useLocation, useNavigate, useParams} from "react-router-dom";
-import Swal from "sweetalert2";
 import {resetPassword} from "../../redux/slices/auth";
 import useForm from "../../hooks/useForm";
 import {resetPasswordFormInitialValues} from "../../common/initialValues/passwordReset";

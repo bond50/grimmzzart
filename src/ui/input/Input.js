@@ -32,7 +32,7 @@ const Input = ({
         case 'password':
             inputElement = (
                 <div className="input-group">
-                    <input
+                    <MDBInput
                         type={passwordVisible ? 'text' : 'password'}
                         className={`form-control ${className}`}
                         required
@@ -109,6 +109,7 @@ const Input = ({
                     value={selectedOption || value}
                     className="basic-single"
                     classNamePrefix="select"
+                    {...elementConfig}
                     defaultValue={elementConfig.options && elementConfig.options[1]}
                     isDisabled={disabled}
                     options={elementConfig.options}

@@ -2,16 +2,23 @@ import './App.css';
 import React, {lazy, Suspense, useCallback, useEffect} from 'react';
 import {Route, Routes} from "react-router-dom";
 import {ToastContainer} from 'react-toastify';
-import UserCreate from "./pages/userManagement/UserCreate";
+
+
 import {AdminRoute} from "./hoc/withAuthCheck";
 import Loader from "./common/Loader/Loader";
-import Login from "./pages/auth/Login";
-import ForgotPassword from "./pages/auth/ForgotPassword";
-import PasswordReset from "./pages/auth/PasswordReset";
-import BrandCreate from "./pages/brand/BrandCreate";
-import BrandList from "./pages/brand/Allbrands";
-import BrandUpdate from "./pages/brand/BrandUpdate";
 
+const UserCreate = lazy(() => import("./pages/userManagement/UserCreate"));
+
+const Login = lazy(() => import("./pages/auth/Login"));
+const ForgotPassword = lazy(() => import("./pages/auth/ForgotPassword"));
+const PasswordReset = lazy(() => import("./pages/auth/PasswordReset"));
+const BrandCreate = lazy(() => import("./pages/brand/BrandCreate"));
+const BrandList = lazy(() => import("./pages/brand/Allbrands"));
+const BrandUpdate = lazy(() => import("./pages/brand/BrandUpdate"));
+const ChangePassword = lazy(() => import("./pages/auth/ChangePassword"));
+const OTPVerification = lazy(() => import("./pages/auth/OTPVerification"));
+const Orders = lazy(() => import("./pages/order/Orders"));
+const Order = lazy(() => import("./pages/order/Order"));
 
 const LoadedRoutes = lazy(() => import( "./pages/route/RoutesPage"));
 const PermissionPage = lazy(() => import( "./pages/role/PermissionPage"));
@@ -40,7 +47,16 @@ const App = () => {
         <Suspense fallback={
             <Loader/>
         }>
-            <ToastContainer position="bottom-center" newestOnTop/>
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={true}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                pauseOnHover
+            />
 
             <Routes>
                 <Route element={<Layout/>}>
@@ -69,10 +85,10 @@ const App = () => {
                         </AdminRoute>
                     }/>
                     <Route path="coupon/:id" element={
-                    <AdminRoute>
-                        <CouponUpdate/>
-                    </AdminRoute>
-                }/>
+                        <AdminRoute>
+                            <CouponUpdate/>
+                        </AdminRoute>
+                    }/>
                     <Route path="sub" element={
                         <AdminRoute>
                             <SubCreate/>
@@ -84,7 +100,7 @@ const App = () => {
                         </AdminRoute>
                     }/>
 
-                     <Route path="brand/:slug" element={
+                    <Route path="brand/:slug" element={
                         <AdminRoute>
                             <BrandUpdate/>
                         </AdminRoute>
@@ -92,6 +108,16 @@ const App = () => {
                     <Route path="brands" element={
                         <AdminRoute>
                             <BrandList/>
+                        </AdminRoute>
+                    }/>
+                    <Route path="orders" element={
+                        <AdminRoute>
+                            <Orders/>
+                        </AdminRoute>
+                    }/>
+                    <Route path="orders/:_id" element={
+                        <AdminRoute>
+                            <Order/>
                         </AdminRoute>
                     }/>
                     <Route path="coupon" element={
@@ -161,6 +187,8 @@ const App = () => {
 
                 <Route element={<AuthLayout/>}>
                     <Route path="login" element={<Login/>}/>
+                    <Route path="otp-verification" element={<OTPVerification/>}/>
+                    <Route path="change-password" element={<ChangePassword/>}/>
                     <Route path="password/forgot" element={<ForgotPassword/>}/>
                     <Route path="password/reset/:token" element={<PasswordReset/>}/>
                 </Route>

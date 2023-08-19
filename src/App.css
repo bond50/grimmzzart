@@ -14,7 +14,9 @@
     min-height: 300px;
 }
 
-
+.react-date-picker__wrapper{
+  border: none!important;
+}
 /* Card */
 .card {
   margin-bottom: 30px;

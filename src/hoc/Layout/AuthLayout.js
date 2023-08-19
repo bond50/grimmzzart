@@ -18,7 +18,6 @@ const AuthLayout = () => {
                                         <Outlet/>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>

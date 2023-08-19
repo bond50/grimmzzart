@@ -1,9 +1,8 @@
-import {useSelector} from "react-redux";
-
-import {checkValidity, updateObject} from '../common/Utility';
+import { useSelector } from "react-redux";
+import { checkValidity, updateObject } from '../common/Utility';
 
 const useForm = (setForm, setFormIsValid) => {
-    const {auth} = useSelector(state => state)
+    const { auth } = useSelector(state => state)
 
     return (event, inputIdentifier) => {
         let value;
@@ -25,16 +24,8 @@ const useForm = (setForm, setFormIsValid) => {
                 value = event.target.value;
         }
 
-
         setForm((prevState) => {
-
-            let loggedInRoleCode
-            if (auth.isLoggedIn && auth.user && auth.user.token && auth.user.role) {
-                loggedInRoleCode = auth.user.role.code
-            }
-            const selectedRoleCode = selectedOption ? selectedOption.code : prevState.role?.selectedOption ? prevState.role.selectedOption.code : null;
-
-            const validationResult = checkValidity(value, prevState[inputIdentifier], selectedRoleCode, loggedInRoleCode);
+            const validationResult = checkValidity(value, prevState[inputIdentifier]);
 
             const updatedFormElement = updateObject(prevState[inputIdentifier], {
                 value,
@@ -44,31 +35,9 @@ const useForm = (setForm, setFormIsValid) => {
                 touched: true,
             });
 
-
             const updatedForm = updateObject(prevState, {
                 [inputIdentifier]: updatedFormElement,
             });
-
-
-            // Add this block of code
-            if (inputIdentifier === 'role') {
-                const isDriverRole = selectedRoleCode === 4000;
-                updatedForm.drivingLicense = updateObject(updatedForm.drivingLicense, {
-                    validation: updateObject(updatedForm.drivingLicense.validation, {
-                        required: isDriverRole,
-                    }),
-                    valid: isDriverRole ? updatedForm.drivingLicense.valid : true,
-                });
-                updatedForm.idNo = updateObject(updatedForm.idNo, {
-                    validation: updateObject(updatedForm.idNo.validation, {
-                        required: isDriverRole,
-                    }),
-                    valid: isDriverRole ? updatedForm.idNo.valid : true,
-                });
-
-            }
-
-
 
             if (inputIdentifier === 'password' && updatedForm.confirmPassword) {
                 const confirmPasswordField = updatedForm.confirmPassword;
@@ -86,5 +55,5 @@ const useForm = (setForm, setFormIsValid) => {
         });
     };
 };
-export default useForm;
 
+export default useForm;

@@ -15,6 +15,7 @@ const UserCreate = () => {
     const [formIsValid, setFormIsValid] = useState(false);
     const [form, setForm] = useState(createUserFormInitialValues.userForm);
     const handleChange = useForm(setForm, setFormIsValid);
+
     const [passwordVisible, togglePasswordVisibility] = useTogglePasswordVisibility(form, setForm);
     const resetForm = () => {
         setForm({...createUserFormInitialValues.userForm});
@@ -40,7 +41,6 @@ const UserCreate = () => {
                             elementConfig: {
                                 ...prevForm.role.elementConfig,
                                 options: [
-                                    {value: "", label: "Select role"},
                                     ...roleOptions,
                                 ],
                             },
@@ -68,7 +68,7 @@ const UserCreate = () => {
 
     return (
         <Auth cardTitle='User create'>
-
+            {loading && <p>Loading...</p>}
             <form onSubmit={handleSubmit}>
                 <Form
                     form={form}
@@ -80,8 +80,6 @@ const UserCreate = () => {
                     </button>
                 </Form>
             </form>
-
-
         </Auth>
     );
 };

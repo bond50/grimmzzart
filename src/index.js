@@ -6,6 +6,8 @@ import reportWebVitals from './reportWebVitals';
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import "react-toastify/ReactToastify.min.css";
 import 'react-quill/dist/quill.snow.css';
+import 'react-date-picker/dist/DatePicker.css';
+import 'react-calendar/dist/Calendar.css';
 import {BrowserRouter} from "react-router-dom";
 import {Provider} from "react-redux";
 import store, {persistor} from "./redux/myStore";

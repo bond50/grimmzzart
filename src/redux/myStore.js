@@ -16,8 +16,7 @@ import storage from "redux-persist/lib/storage";
 // Import reducers
 import messageReducer from "./slices/message";
 import authReducer from "./slices/auth";
-
-
+import orderSlice from './slices/orderSlice'
 
 
 // Persist configuration
@@ -30,6 +29,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
     message: messageReducer,
     auth: authReducer,
+    orders: orderSlice
 });
 
 // Persist the root reducer

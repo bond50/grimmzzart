@@ -3,7 +3,6 @@ import axios from 'axios';
 import {API_URL} from "../common/config/config";
 
 
-
 export const getAllUsers = (token) => {
     return axios
         .get(API_URL + "/user-management/users", {
@@ -44,6 +43,17 @@ export const getUser = (userId, token) => {
         .catch((error) => {
             // Return the error message from the server
             return {error: error.response.data.error};
+        });
+};
+export const getUserVerificationInfo = (userId, token) => {
+    return axios
+        .get(API_URL + `/user-verification/${userId}`)
+        .then((response) => {
+            return Promise.resolve(response.data); // return a promise that resolves to the response data
+        })
+        .catch((error) => {
+            // Return the error message from the server
+            return Promise.reject({error: error.response.data.error});
         });
 };
 

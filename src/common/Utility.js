@@ -91,7 +91,8 @@ const validateKenyanDrivingLicense = (value) => {
     return {valid, messages};
 };
 
-export const checkValidity = (value, field, selectedRoleCode, loggedInRoleCode) => {
+export const checkValidity = (value, field) => {
+
     let isValid = true;
     let validationMessage = [];
 
@@ -101,52 +102,15 @@ export const checkValidity = (value, field, selectedRoleCode, loggedInRoleCode) 
 
 
     const {
-        required,
         minLength,
         maxLength,
         isEmail,
-        isPassword,
         isEqual,
         isTerms,
         isDate,
         isPhoneNumber,
-        idNo,
-        drivingLicense,
     } = field.validation;
 
-    const isDriverRole = selectedRoleCode === 4000;
-    const isIdNoOrDrivingLicense = idNo || drivingLicense;
-
-    if (required || (isDriverRole && isIdNoOrDrivingLicense)) {
-        validationMessage = checkRequired(value, validationMessage);
-        isValid = validationMessage.length === 0 && isValid;
-    }
-
-    if (isDriverRole && isIdNoOrDrivingLicense && (typeof value === 'string' && value.trim() === '')) {
-        validationMessage.push('This field is mandatory for the selected role');
-        isValid = false;
-    } else if (!isDriverRole && isIdNoOrDrivingLicense) {
-        // Don't reset the validationMessage and isValid for non-driver roles, only check if it's required
-        if (required) {
-            validationMessage = checkRequired(value, validationMessage);
-            isValid = validationMessage.length === 0 && isValid;
-        } else {
-            validationMessage = [];
-            isValid = true;
-        }
-    }
-
-    if (idNo && typeof value === 'string') {
-        const {valid, messages} = validateKenyanId(value);
-        isValid = valid && isValid;
-        validationMessage = [...validationMessage, ...messages];
-    }
-
-    if (drivingLicense && typeof value === 'string') {
-        const {valid, messages} = validateKenyanDrivingLicense(value);
-        isValid = valid && isValid;
-        validationMessage = [...validationMessage, ...messages];
-    }
 
 
     if (typeof value === 'string') {
@@ -163,11 +127,7 @@ export const checkValidity = (value, field, selectedRoleCode, loggedInRoleCode) 
         isValid = valid && isValid;
         validationMessage = [...validationMessage, ...messages];
     }
-    if (isPassword && typeof value === 'string' && loggedInRoleCode !== 1000) {
-        const {valid, messages} = validatePassword(value);
-        isValid = valid && isValid;
-        validationMessage = [...validationMessage, ...messages];
-    }
+
     if (isEqual && typeof value === 'string') {
         if (value.trim() !== field.validation.passwordValue.trim()) {
             validationMessage.push('Password does not match');

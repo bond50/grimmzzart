@@ -8,7 +8,6 @@ import Auth from "../../components/wrappers/Auth";
 const {Search} = Input;
 
 
-
 const UserManagement = () => {
     const {user} = useSelector((state) => state.auth);
     const token = user.token;
@@ -16,11 +15,19 @@ const UserManagement = () => {
     const [searchText, setSearchText] = useState('');
 
 
-
     const handleDeleteUser = async (userId) => {
+    try {
         await deleteUser(userId, token);
         await mutate(); // Re-fetch the data after deleting a user
-    };
+    } catch (error) {
+        // Display the error message using Modal.error
+        Modal.error({
+            title: 'Error',
+            content: error.response.data.message || 'An error occurred while deleting the user.',
+        });
+    }
+};
+
 
     const showDeleteConfirm = (userId) => {
         Modal.confirm({

@@ -11,6 +11,10 @@ export const currentAdmin = async (token, user) => {
 const forgotPassword = (email) => {
     return axios.put(API_URL + '/forgot-password', email);
 };
+const changePassword = (userId, data) => {
+    return axios.put(`${API_URL}/change-password/${userId}`, data);
+};
+
 const resetPassword = (resetInfo) => {
     return axios.put(API_URL + '/reset-password', resetInfo);
 };
@@ -33,12 +37,14 @@ const login = (data) => {
     });
 };
 
+
 const authService = {
     currentAdmin,
     logout,
     verify2FA,
     forgotPassword,
     resetPassword,
+    changePassword,
     login
 };
 

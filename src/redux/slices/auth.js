@@ -30,6 +30,17 @@ export const resetPassword = createAsyncThunk("auth/resetPassword", async (data,
         throw error;
     }
 });
+export const changePassword = createAsyncThunk("auth/changePassword", async ({ userId, data }, thunkAPI) => {
+    try {
+        const response = await AuthService.changePassword(userId, data);
+        thunkAPI.dispatch(setMessage(response.data.message));
+        return response.data;
+    } catch (error) {
+        handleError(error, thunkAPI);
+        throw error;
+    }
+});
+
 
 export const forgotPassword = createAsyncThunk("auth/forgotPassword", async (email, thunkAPI) => {
     try {
@@ -37,8 +48,8 @@ export const forgotPassword = createAsyncThunk("auth/forgotPassword", async (ema
         thunkAPI.dispatch(setMessage(response.data.message));
         return response.data;
     } catch (error) {
-       handleError(error, thunkAPI);
-       throw error;
+        handleError(error, thunkAPI);
+        throw error;
     }
 });
 
@@ -51,8 +62,7 @@ export const login = createAsyncThunk("auth/login", async (userInfo, thunkAPI) =
         return await AuthService.login(userInfo);
 
     } catch (error) {
-        console.log('ERRRRRRR', error)
-       handleError(error, thunkAPI);
+        handleError(error, thunkAPI);
         throw error;
     }
 });
@@ -67,8 +77,8 @@ export const verify2FA = createAsyncThunk("auth/verify2FA", async (data, thunkAP
         }
         return {user};
     } catch (error) {
-       handleError(error, thunkAPI);
-       throw error;
+        handleError(error, thunkAPI);
+        throw error;
     }
 });
 
@@ -98,6 +108,14 @@ const authSlice = createSlice({
                 state.user = null;
             })
             .addCase(login.rejected, (state, action) => {
+                state.isLoggedIn = false;
+                state.user = null;
+            })
+            .addCase(changePassword.fulfilled, (state, action) => {
+                state.isLoggedIn = false;
+                state.user = null;
+            })
+            .addCase(changePassword.rejected, (state, action) => {
                 state.isLoggedIn = false;
                 state.user = null;
             })

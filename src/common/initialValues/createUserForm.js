@@ -90,41 +90,6 @@ export const createUserFormInitialValues = {
             touched: false,
             selectedOption: '',
         },
-        drivingLicense: {
-            elementType: 'input',
-            elementConfig: {
-                type: 'text',
-                label: 'Driving License',
-                id: 'drivingLicense',
-            },
-
-            value: '',
-            validation: {
-                required: false,
-                drivingLicense: true,
-            },
-            validationMessage: [],
-            valid: true,
-            touched: false
-        },
-        idNo: {
-            elementType: 'input',
-            elementConfig: {
-                type: 'text',
-                label: 'ID Number',
-                name: 'idNo',
-                id: 'idNo',
-            },
-
-            value: '',
-            validation: {
-                required: false,
-                idNo: true,
-            },
-            validationMessage: [],
-            valid: true,
-            touched: false
-        },
         email: {
             elementType: 'input',
             elementConfig: {
@@ -214,7 +179,6 @@ export const createUserFormInitialValues = {
                 name: 'gender',
             },
             selectedOption: '',
-
             value: {value: '', label: 'Select gender'},
             validation: {
                 required: true,
