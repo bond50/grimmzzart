@@ -19,7 +19,6 @@ const ChangePassword = lazy(() => import("./pages/auth/ChangePassword"));
 const OTPVerification = lazy(() => import("./pages/auth/OTPVerification"));
 const Orders = lazy(() => import("./pages/order/Orders"));
 const Order = lazy(() => import("./pages/order/Order"));
-
 const LoadedRoutes = lazy(() => import( "./pages/route/RoutesPage"));
 const PermissionPage = lazy(() => import( "./pages/role/PermissionPage"));
 const Roles = lazy(() => import( "./pages/role/RolesPage"));
@@ -41,6 +40,10 @@ const AllProducts = lazy(() => import( "./pages/product/AllProducts"));
 const CreateCouponPage = lazy(() => import( "./pages/coupon/CreateCouponPage"));
 const CouponUpdate = lazy(() => import( "./pages/coupon/CouponUpdate"));
 const Permissions = lazy(() => import( "./pages/permission/Permissions"));
+
+const BannerCreate = lazy(() => import("./pages/banner/BannerCreate"));
+const BannerList = lazy(() => import("./pages/banner/AllBanners"));
+const BannerUpdate = lazy(() => import("./pages/banner/BannerUpdate"));
 const App = () => {
 
     return (
@@ -110,6 +113,26 @@ const App = () => {
                             <BrandList/>
                         </AdminRoute>
                     }/>
+
+
+                    <Route path="banner" element={
+                        <AdminRoute>
+                            <BannerCreate/>
+                        </AdminRoute>
+                    }/>
+
+                    <Route path="banner/:slug" element={
+                        <AdminRoute>
+                            <BannerUpdate/>
+                        </AdminRoute>
+                    }/>
+                    <Route path="banners" element={
+                        <AdminRoute>
+                            <BannerList/>
+                        </AdminRoute>
+                    }/>
+
+
                     <Route path="orders" element={
                         <AdminRoute>
                             <Orders/>

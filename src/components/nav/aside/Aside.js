@@ -52,9 +52,21 @@ const Aside = ({open}) => {
             subItems: [
                 {title: 'Add Brand', href: '/brand'},
                 {title: 'All Brands', href: '/brands'},
-               
+
             ],
-        }, {
+        },
+        {
+            id: 'banner',
+            icon: 'bi:file-earmark-image',
+            title: 'Banners',
+            href: '#',
+            subItems: [
+                {title: 'Add Banner', href: '/banner'},
+                {title: 'All Banners', href: '/banners'},
+
+            ],
+        },
+        {
             id: 'products',
             icon: 'eos-icons:product-classes-outlined',
             title: 'Products',

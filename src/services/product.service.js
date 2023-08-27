@@ -2,8 +2,6 @@ import axios from "axios";
 import {API_URL} from "../common/config/config";
 
 
-
-
 export const createProduct = async (product, token) => {
     return await axios.post(`${API_URL}/product`, product, {
         headers: {
@@ -16,7 +14,7 @@ export const getProductsByCount = async (count) => await axios.get(`${API_URL}/p
 
 
 export const getAdminProductsByCount = async (params) => {
-  return await axios.get(`${API_URL}/products/admin`, { params });
+    return await axios.get(`${API_URL}/products/admin`, {params});
 };
 
 export const removeProduct = async (slug, token) => await axios.delete(`${API_URL}/product/${slug}`, {
@@ -37,9 +35,25 @@ export const updateProduct = async (slug, product, token) => {
 };
 
 
-export const getProducts = async (sort, order, page) => {
-    return await axios.post(`${API_URL}/products`, {sort, order, page});
+export const getProducts = async (sort, order, page, limit, searchTerm) => {
+    try {
+        const {data} = await axios.get(`${API_URL}/products/list/some`, {
+            params: {
+                sort,
+                order,
+                page,
+                limit,
+                searchTerm // Include this in the API request
+            }
+        });
+
+        return data;
+    } catch (error) {
+        console.error("Error fetching products:", error); // Debugging line
+        return null;
+    }
 };
+
 
 export const getProductsCount = async () => {
     return await axios.get(`${API_URL}/products/total`);
