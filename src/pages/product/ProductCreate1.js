@@ -201,6 +201,7 @@ const ProductCreate = () => {
                     })
                     .catch((error) => {
                         console.log(error.response);
+                        setSubmitted(false)
                         toast(error.response.data.error, {
                             type: 'error',
                         });
@@ -208,6 +209,7 @@ const ProductCreate = () => {
                     });
             } catch (error) {
                 if (error instanceof Yup.ValidationError) {
+                    setSubmitted(false)
                     const errors = handleValidationErrors(error);
                     setError(errors);
                     setLoading(false);  // Also, stop loading when validation fails

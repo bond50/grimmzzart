@@ -56,6 +56,7 @@ const ProductUpdate = () => {
     const [selectedCategory, setSelectedCategory] = useState('')
     const [selectedBrand, setSelectedBrand] = useState('')
     const [error, setError] = useState({});
+    const [submitted, setSubmitted] = useState(false);
 
 
     let navigate = useNavigate()
@@ -121,6 +122,7 @@ const ProductUpdate = () => {
     function handleSubmit(e) {
         e.preventDefault()
         setLoading(true)
+        setSubmitted(false)
 
         let subs = arrayOfSubs.map(sub => sub._id);
 
@@ -128,7 +130,7 @@ const ProductUpdate = () => {
         updateProduct(slug, updatedValues, user.token)
             .then(r => {
                 setLoading(false)
-
+                setSubmitted(true)
                 toast(`${r.data.title} is updated`, {
                     type: 'success'
                 })
@@ -138,6 +140,7 @@ const ProductUpdate = () => {
 
             }).catch(e => {
             setLoading(false)
+            setSubmitted(false)
             toast(e.response.data.error, {
                 type: 'error'
             })
@@ -245,11 +248,19 @@ const ProductUpdate = () => {
     return (
         <Auth cardTitle={values.title}>
 
-            <FileUpload
-                values={values}
-                setValues={setValues}
-                setError={setError}
-                setLoading={setLoading} loading={loading}/>
+            <div>
+                <label className='label-title'>Images of your product*</label>
+                <FileUpload
+                    submitted={submitted}
+                    values={values}
+                    setError={setError}
+                    folder='Products'
+                    loading={loading}
+                    setLoading={setLoading}
+                    setValues={setValues}/>
+                {error.images && <p className="text-danger">{error.images}</p>}
+
+            </div>
             <ProductUpdateForm
                 values={values}
                 setValues={setValues}
