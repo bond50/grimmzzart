@@ -37,6 +37,10 @@ const FileUpload = ({
         return
     }
 
+    function sanitizeFolderName(folder) {
+        return folder.replace(/[^a-zA-Z]/g, '');
+    }
+
     function fileUploadAndResize(e) {
         setError({});
         e.preventDefault()
@@ -46,7 +50,7 @@ const FileUpload = ({
             setLoading(true)
             for (let i = 0; i < files.length; i++) {
                 Resizer.imageFileResizer(files[i], width, height, "JPEG", 100, 0, (uri) => {
-                        axios.post(`${API_URL}/upload-images`, {image: uri, folder}, {
+                        axios.post(`${API_URL}/upload-images`, {image: uri, folder: sanitizeFolderName(folder)}, {
                             headers: {
                                 'Authorization': `Bearer ${user && user.token}`,
                             }
