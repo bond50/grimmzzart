@@ -1,58 +1,78 @@
-import React, {useState, useEffect} from 'react';
-import axios from 'axios';
+// import React, {useState, useEffect} from 'react';
+// import axios from 'axios';
+//
+//
+// const BannerUpdate = ({match}) => {
+//     // ... (state variables remain the same)
+//
+//     useEffect(() => {
+//         // Fetch existing banner data when the component mounts
+//         const fetchExistingBanner = async () => {
+//             try {
+//                 const response = await axios.get(`/api/banner/${match.params.id}`);
+//                 const existingBanner = response.data;
+//                 setFormData({
+//                     contentType: existingBanner.contentType,
+//                     ctaText: existingBanner.ctaText,
+//                     contentId: existingBanner.contentId,
+//                     startDate: new Date(existingBanner.startDate),
+//                     endDate: new Date(existingBanner.endDate),
+//                     title: existingBanner.title,
+//                     subtitle: existingBanner.subtitle,
+//                     price: existingBanner.price,
+//                     images: existingBanner.images
+//                 });
+//                 // ... (set other state variables if needed)
+//             } catch (error) {
+//                 console.error('Error fetching existing banner:', error);
+//             }
+//         };
+//
+//         fetchExistingBanner();
+//     }, [match.params.id]);
+//
+//     // ... (other useEffects and functions remain the same)
+//
+//     const handleSubmit = async (e) => {
+//         e.preventDefault();
+//         setLoading(true);
+//
+//         // ... (other code remains the same)
+//
+//         try {
+//             const updatedBanner = await axios.put(`/api/banner/${match.params.id}`, compatibleFormData, {
+//                 headers: {
+//                     Authorization: `Bearer ${user.token}`
+//                 }
+//             });
+//
+//             if (updatedBanner) {
+//                 toast(`Banner "${updatedBanner.title}" is updated successfully!`, {
+//                     type: 'success'
+//                 });
+//             } else {
+//                 toast("Banner update was successful but the response is empty.", {
+//                     type: 'warning'
+//                 });
+//             }
+//             setLoading(false);
+//         } catch (error) {
+//             // ... (error handling remains the same)
+//         }
+//     };
+//
+//     // ... (render method remains the same)
+// };
+//
+// export default BannerUpdate;
 
-const BannerUpdate = ({match}) => {
-    const [formData, setFormData] = useState({
-        contentType: '',
-        contentId: '',
-        src: '',
-        title: '',
-        subtitle: '',
-        price: '',
-    });
 
-    useEffect(() => {
-        const fetchBanner = async () => {
-            try {
-                const response = await axios.get(`/api/banner/${match.params.slug}`);
-                setFormData(response.data);
-            } catch (error) {
-                console.error('Error fetching banner:', error);
-            }
-        };
-        fetchBanner();
-    }, [match.params.slug]);
+import React from 'react';
 
-    const handleChange = (e) => {
-        setFormData({...formData, [e.target.name]: e.target.value});
-    };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await axios.put(`/api/banner/${match.params.slug}`, formData);
-            console.log('Banner Updated:', response);
-        } catch (error) {
-            console.error('Error updating banner:', error);
-        }
-    };
-
+const BannerUpdate = () => {
     return (
         <div>
-            <h1>Update Banner</h1>
-            <form onSubmit={handleSubmit}>
-                {/* Add form fields here */}
-                {/* Example: */}
-                <input
-                    type="text"
-                    name="title"
-                    value={formData.title}
-                    onChange={handleChange}
-                    placeholder="Title"
-                />
-                {/* Add other form fields */}
-                <button type="submit">Update Banner</button>
-            </form>
+            
         </div>
     );
 };

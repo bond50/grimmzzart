@@ -7,7 +7,6 @@ import './FileUpload.css'
 import {API_URL} from "../../common/config/config";
 
 
-
 const FileUpload = ({
                         values,
                         width,
@@ -31,11 +30,15 @@ const FileUpload = ({
 
 
     if (!values || !values.images) {
-        return null;
+        return;
+    }
+
+    if (!folder) {
+        return
     }
 
     function fileUploadAndResize(e) {
-           setError({});
+        setError({});
         e.preventDefault()
         let allUploadedFiles = values.images
         let files = e.target.files
@@ -116,18 +119,18 @@ const FileUpload = ({
             </div>
             <div className="mb-3">
                 {!loading ?
-                    <label className='btn btn-dark' disabled={uploadDisabled}>Images upload
+                    <label className='btn btn-primary' disabled={!folder || uploadDisabled}>Images upload
                         <input
-                            disabled={uploadDisabled}
+                            disabled={!folder || uploadDisabled}
                             className="form-control"
                             type="file"
                             multiple
                             hidden
-                            accept="image/jpeg, image/png"
+                            accept="image/jpeg, image/png, image/gif, image/bmp, image/tiff"
                             onChange={fileUploadAndResize}
                         />
-
                     </label>
+
                     : <div className="spinner-border" role="status">
                         <span className="visually-hidden">Uploading images...</span>
                     </div>}
@@ -141,6 +144,8 @@ const FileUpload = ({
 FileUpload.defaultProps = {
     width: 830,
     height: 550,
+    setError: () => {
+    },  // Default function
 };
 
 export default FileUpload;

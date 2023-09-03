@@ -233,6 +233,7 @@ const ProductCreate = () => {
                 setLoading={setLoading}
                 loading={loading}
             />
+
             <ProductCreateForm
                 handleSubmit={handleSubmit}
                 handleChange={handleChange}
